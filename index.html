@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Net | المتجر التقني المتكامل</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo" onclick="showPage('home')">🌐 Web Net</div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="ابحث عن منتج..." onkeyup="liveSearch()">
+        </div>
+        <div class="header-icons">
+            <span onclick="showPage('cart')">🛒 <span id="cartCount">0</span></span>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <button onclick="showPage('home')">الرئيسية</button>
+        <button onclick="showPage('products-page')">المنتجات</button>
+        <button onclick="showPage('about')">من نحن</button>
+        <button onclick="showPage('track')">تتبع الطلب</button>
+    </nav>
+
+    <main class="container">
+        
+        <section id="home" class="page active">
+            <div class="hero">
+                <h1>مرحباً بك في Web Net</h1>
+                <p>وجهتك الأولى لأحدث التقنيات وأقوى العروض</p>
+                <button class="btn-primary" onclick="showPage('products-page')">تصفح الأقسام</button>
+            </div>
+            <div class="featured-cats">
+                <div class="f-card" onclick="loadCategory('hardware')">💻 الهاردوير</div>
+                <div class="f-card" onclick="loadCategory('accessories')">🖱️ الملحقات</div>
+                <div class="f-card" onclick="loadCategory('software')">💿 البرمجيات</div>
+            </div>
+        </section>
+
+        <section id="about" class="page">
+            <div class="about-section">
+                <h2>من نحن</h2>
+                <p>Web Net هو مشروع تقني رائد يهدف لتوفير أفضل الحلول البرمجية والمعدات التقنية في المنطقة، مع الالتزام بجودة الخدمة وسرعة التوصيل.</p>
+                
+            </div>
+        </section>
+
+        <section id="products-page" class="page">
+            <h2>أقسام المنتجات</h2>
+            <div class="sub-nav">
+                <button onclick="loadCategory('all')">الكل</button>
+                <button onclick="loadCategory('hardware')">هاردوير</button>
+                <button onclick="loadCategory('accessories')">إكسسوارات</button>
+                <button onclick="loadCategory('software')">برمجيات</button>
+            </div>
+            <div class="product-grid" id="productsGrid"></div>
+        </section>
+
+        <section id="item-detail" class="page">
+            <div id="productDetails" class="detail-view"></div>
+        </section>
+
+        <section id="cart" class="page">
+            <h2>🛒 عربة التسوق</h2>
+            <div id="cartContent"></div>
+            <div class="cart-summary">
+                <h3>الإجمالي: <span id="cartTotal">0</span> JOD</h3>
+                <button class="btn-success" onclick="showPage('checkout')">استكمال الفحص والدفع</button>
+            </div>
+        </section>
+
+        <section id="checkout" class="page">
+            <h2>الفحص والدفع</h2>
+            <form id="paymentForm" onsubmit="handleOrder(event)">
+                <div class="form-group">
+                    <input type="text" placeholder="الاسم الكامل" required>
+                    <input type="text" placeholder="عنوان التوصيل بالتفصيل" required>
+                    <input type="tel" placeholder="رقم الهاتف" required>
+                </div>
+                <h3>طريقة الدفع</h3>
+                <select id="payMethod">
+                    <option value="cash">الدفع عند الاستلام</option>
+                    <option value="wallet">محفظة إلكترونية</option>
+                </select>
+                <button type="submit" class="btn-primary">تأكيد الطلب</button>
+            </form>
+        </section>
+
+        <section id="track" class="page">
+            <div class="track-card">
+                <div id="trackInfo">
+                    <h2>تتبع طلبك</h2>
+                    <p>أدخل رقم الطلب لمتابعة الحالة:</p>
+                    <input type="text" id="trackInput" placeholder="مثال: WN-1234">
+                    <button class="btn-primary" onclick="trackOrder()">بحث</button>
+                </div>
+                <div id="trackStatus" style="display:none;">
+                    <h2 class="text-success">حالة الطلب: <span id="statusLabel">قيد التجهيز</span></h2>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                    <p>رقم الطلب: <b id="displayOrderID"></b></p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+ <footer>
+    <div class="footer-content">
+        <p>Web Net التقني &copy; 2026 | مدرسة عثمان بن عفان الثانوية</p>
+        <p>
+            تواصل معنا: 
+            <!-- رابط الاتصال الهاتفي -->
+            <a href="tel:0790000000" style="text-decoration: none; color: inherit;">
+                <i class="fas fa-phone"></i> 079-0000000
+            </a> 
+            | 
+            <!-- رابط البريد الإلكتروني -->
+            <a href="mailto:info@webnet.jo" style="text-decoration: none; color: inherit;">
+                <i class="fas fa-envelope"></i> info@webnet.jo
+            </a>
+        </p>
+    </div>
+</footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
